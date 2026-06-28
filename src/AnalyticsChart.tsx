@@ -1,71 +1,93 @@
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
+  PieChart,
+  Pie,
+  Cell,
   Tooltip,
   ResponsiveContainer,
-  Cell,
+  Legend,
 } from "recharts";
 
 import { leads } from "./leads";
 
 export default function AnalyticsChart() {
   const data = [
-   {
-      status: "Qualified",
-      count: leads.filter(
+    {
+      name: "Qualified",
+      value: leads.filter(
         (lead) => lead.status.trim() === "Qualified"
       ).length,
     },
     {
-      status: "New",
-      count: leads.filter(
+      name: "New",
+      value: leads.filter(
         (lead) => lead.status.trim() === "New"
       ).length,
     },
     {
-      status: "Contacted",
-      count: leads.filter(
+      name: "Contacted",
+      value: leads.filter(
         (lead) => lead.status.trim() === "Contacted"
       ).length,
     },
     {
-      status: "Proposal",
-      count: leads.filter(
+      name: "Proposal",
+      value: leads.filter(
         (lead) => lead.status.trim() === "Proposal"
       ).length,
     },
   ];
 
-  const colors = [
-    "#3B82F6", // Blue - New
-    "#EAB308", // Yellow - Contacted
-    "#22C55E", // Green - Qualified
-    "#A855F7", // Purple - Proposal
+  const COLORS = [
+    "#06B6D4", // Cyan
+    "#3B82F6", // Blue
+    "#22C55E", // Green
+    "#A855F7", // Purple
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow p-6 mt-6">
-      <h2 className="text-xl font-bold mb-4">
-        Lead Analytics
-      </h2>
+    <div className="glass-card mt-8 p-6">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white">
+          Lead Analytics
+        </h2>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
-          <XAxis dataKey="status" />
-          <YAxis />
-          <Tooltip />
+        <p className="text-slate-400 text-sm">
+          Lead status distribution
+        </p>
+      </div>
 
-          <Bar dataKey="count">
+      <ResponsiveContainer width="100%" height={350}>
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={110}
+            innerRadius={55}
+            paddingAngle={4}
+            label
+          >
             {data.map((_, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={colors[index]}
+                fill={COLORS[index]}
               />
             ))}
-          </Bar>
-        </BarChart>
+          </Pie>
+
+          <Tooltip
+            contentStyle={{
+              background: "#1E293B",
+              border: "1px solid rgba(255,255,255,.15)",
+              borderRadius: "12px",
+              color: "#fff",
+            }}
+          />
+
+          <Legend />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
