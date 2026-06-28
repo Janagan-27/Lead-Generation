@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-type Props = {
+git statustype Props = {
   lead: any;
 };
 
