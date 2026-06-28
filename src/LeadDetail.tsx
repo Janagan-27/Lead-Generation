@@ -1,4 +1,4 @@
-git statustype Props = {
+type Props = {
   lead: any;
 };
 
