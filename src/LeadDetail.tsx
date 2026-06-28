@@ -5,11 +5,7 @@ type Props = {
 };
 
 export default function LeadDetail({ lead }: Props) {
-  const [showCall, setShowCall] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
 
-  const [editedLead, setEditedLead] = useState(lead);
   if (!lead) return null;
 
   return (
