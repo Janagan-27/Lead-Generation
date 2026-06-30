@@ -39,15 +39,21 @@ export default function LeadTable() {
   
   if (loading) {
   return (
-    <div className="bg-white rounded-xl shadow p-8 mt-6 text-center">
-      <div className="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+    <div className="glass-card mt-8 p-12 text-center">
 
-      <p className="mt-4 text-gray-600">
-        Loading leads...
+      <div className="mx-auto h-14 w-14 rounded-full border-4 border-cyan-500 border-t-transparent animate-spin"></div>
+
+      <h3 className="mt-6 text-xl font-semibold text-white">
+        Loading Leads...
+      </h3>
+
+      <p className="mt-2 text-slate-400">
+        Please wait while we fetch your dashboard.
       </p>
+
     </div>
-  );
-}
+    );
+  }
   if (error) {
   return (
     <div className="bg-red-100 border border-red-300 rounded-xl p-6 mt-6 text-center">
@@ -131,8 +137,8 @@ export default function LeadTable() {
           <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="border border-gray-300 p-2 rounded-lg w-44 bg-transparent text-white"
-          >
+          className="w-44 bg-slate-800/80 text-white border border-white/20 rounded-xl px-4 py-2 outline-none focus:border-cyan-400"
+>
           <option value="All">All Status</option>
           <option value="New">New</option>
           <option value="Contacted">Contacted</option>
@@ -144,8 +150,9 @@ export default function LeadTable() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border border-gray-300 p-2 rounded-lg w-44 bg-transparent text-white"
+            className="w-44 bg-slate-800/80 text-white border border-white/20 rounded-xl px-4 py-2 outline-none focus:border-cyan-400"
           >
+          
             <option value="name">Sort by Name</option>
             <option value="company">Sort by Company</option>
             <option value="status">Sort by Status</option>
